@@ -1,0 +1,39 @@
+{
+  "server": {
+    "port": 8080,
+    "host": "0.0.0.0",
+    "static_dir": "./static"
+  },
+  "endpoints": {
+    "/api/delay": {
+      "type": "delay",
+      "delay_ms": 2000,
+      "response": {
+        "message": "Delayed response"
+      }
+    },
+    "/api/error": {
+      "type": "error",
+      "status_code": 500,
+      "message": "Internal Server Error"
+    },
+    "/api/501": {
+      "type": "error",
+      "status_code": 501,
+      "message": "Not Implemented"
+    },
+    "/api/flaky": {
+      "type": "conditional_error",
+      "status_code": 503,
+      "error_every_n": 3,
+      "success_response": {
+        "status": "ok"
+      }
+    },
+    "/api/test": {
+      "type": "error",
+      "status_code": 404,
+      "message": "Test endpoint"
+    }
+  }
+}

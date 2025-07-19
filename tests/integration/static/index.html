@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebServer</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { color: #333; }
+        .endpoint { background: #f4f4f4; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        code { background: #eee; padding: 2px 4px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WebServer Configurable Web Server</h1>
+        <p>Welcome to the WebServer! This server is running and ready to handle requests.</p>
+        
+        <h2>Available Endpoints</h2>
+        <div class="endpoint">
+            <strong>GET /config</strong> - Get current configuration
+        </div>
+        <div class="endpoint">
+            <strong>PUT /config</strong> - Update configuration
+        </div>
+        <div class="endpoint">
+            <strong>GET /stats</strong> - Get server statistics
+        </div>
+        <div class="endpoint">
+            <strong>GET /ws</strong> - WebSocket endpoint for TUI
+        </div>
+        
+        <h2>Testing Dynamic Endpoints</h2>
+        <p>Try these default endpoints to test the dynamic behavior:</p>
+        <div class="endpoint">
+            <strong>GET <a href="/api/error">/api/error</a></strong> - Returns a 500 error
+        </div>
+        <div class="endpoint">
+            <strong>GET <a href="/api/delay">/api/delay</a></strong> - Returns a delayed response (2 seconds)
+        </div>
+        <div class="endpoint">
+            <strong>GET <a href="/api/flaky">/api/flaky</a></strong> - Returns an error every 3rd request
+        </div>
+        
+        <h2>Configuration</h2>
+        <p>The server configuration is hot-reloadable. Modify the configuration file or use the <span class="code">/config</span> endpoint to update settings.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+# Binaries
+bin/
+main
+*.exe
+
+# Test files and scripts
+test_*.sh
+*_test.go
+
+# Documentation
+README.md
+prp.md
+*.md
+
+# Git
+.git
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test data
+tests/
+
+# Temporary files
+*.tmp
+*.log
+
+# Docker files (except Dockerfile)
+docker-compose.yml
+docker-compose.yaml
+.dockerignore 

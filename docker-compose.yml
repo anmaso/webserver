@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      # Mount custom config if needed (optional)
+      # - ./configs/custom.json:/app/configs/default.json:ro
+      # Mount static files directory for development (optional)
+      # - ./static:/app/static:ro
+    environment:
+      # You can override default settings here
+      - CONFIG_PATH=/app/configs/default.json
+    restart: unless-stopped
+    networks:
+      - webserver-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/stats"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add a development/debugging service
+  webserver-dev:
+    profiles: ["dev"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      # Mount the entire project for development
+      - .:/app:ro
+    environment:
+      - CONFIG_PATH=/app/configs/default.json
+    command: ["./webserver", "-config", "/app/configs/default.json"]
+    networks:
+      - webserver-network
+
+networks:
+  webserver-network:
+    driver: bridge 
